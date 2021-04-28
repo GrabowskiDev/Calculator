@@ -1,0 +1,22 @@
+.calculator {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -55%); 
+
+    width: 400px;
+    height: 500px;
+    border: 5px solid #15232d;
+}
+
+.display {
+    color: white;
+    background-color: #193549;
+    border-bottom: 5px solid #15232d;
+
+    margin: auto;
+
+    text-align: end;
+    font-size: 50px;
+    font-family: 'Roboto', sans-serif;
+}
