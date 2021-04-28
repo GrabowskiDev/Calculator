@@ -23,8 +23,10 @@
 
 .buttons {
     display: grid;
-    grid-template-columns: repeat(4, 100px [col-start]);
-    grid-template-rows: repeat(5, 87.2px [row-start]);
+    grid-template-columns: repeat(4, 98.5px [col-start]);
+    grid-template-rows: repeat(5, 85.6px [row-start]);
+    grid-gap: 2px;
+    background-color: #0d3754;
 }
 
 .operation {
@@ -38,9 +40,9 @@
 .buttons * {
     text-align: center;
     line-height: 87.2px;
-    border: 2px solid #0d3754;
     color: white;
     font-size: 20px;
+    border: 0px;
 }
 
 #AC {
