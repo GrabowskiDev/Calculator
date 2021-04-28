@@ -27,8 +27,21 @@
     grid-template-rows: repeat(5, 87.2px [row-start]);
 }
 
+.operation {
+    background-color: #15232d;
+}
+
+.number {
+    background-color: #122738;
+}
+
 .buttons * {
     text-align: center;
     line-height: 87.2px;
-    border: 2px solid #15232d;
+    border: 2px solid #0d3754;
+    color: white;
+}
+
+#AC {
+    background-color: #ffae42;
 }
