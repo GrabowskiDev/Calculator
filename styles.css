@@ -20,3 +20,15 @@
     font-size: 50px;
     font-family: 'Roboto', sans-serif;
 }
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 100px [col-start]);
+    grid-template-rows: repeat(5, 87.2px [row-start]);
+}
+
+.buttons * {
+    text-align: center;
+    line-height: 87.2px;
+    border: 2px solid #15232d;
+}
