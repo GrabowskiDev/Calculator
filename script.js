@@ -46,7 +46,8 @@ function singleOperation(operator) {
         return Math.sqrt(currentNumber);
     }
     if(operator=="+/-") {
-
+        if(display.textContent.charAt(0)=="-") return display.textContent.slice(1);
+        else return `-${display.textContent}`;
     }
     if(operator=="=") {
         secondNumber = parseFloat(currentNumber);
@@ -59,11 +60,12 @@ function singleOperation(operator) {
 function populate(num) {
     let text = display.textContent;
     //If current number is 0, it will replace it
-    if(text=="0"&&num!=",") text="";
+    if(text=="0"&&num!=".") text="";
+    if(text=="-0"&&num!=".") text="-";
     display.textContent = `${text}${num}`;
 
     //Disabling "," button
-    if(num==",") floatButton.disabled = true;
+    if(num==".") floatButton.disabled = true;
     //Storing currently displayed number
     setCurrentNumber();
 }
@@ -109,9 +111,8 @@ clearButton.addEventListener('click', () => {
     firstNumber = 0;
     secondNumber = 0;
     currentNumber = 0;
+    globalOperator = "+";
 });
-
-
 
 //if an operation is already in process, clicking next operation will
 //display the result of previous operation, but input of any number
@@ -134,7 +135,5 @@ singleOperationButtons.forEach((button) => {
     button.addEventListener('click', () => {
         display.textContent = singleOperation(button.id);
         setCurrentNumber();
-        
-        
     });
 });
