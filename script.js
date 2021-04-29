@@ -19,27 +19,41 @@ function percent(num) {
     return num/100;
 }
 
-function squareroot(num) {
-    return Math.sqrt(num);
-}
-
 //Make an operation on given numbers
 function operate(num1,operator,num2) {
-    if(operator="+") {
+    if(operator=="+") {
         return add(num1,num2);
     }
-    if(operator="-") {
+    if(operator=="-") {
         return substract(num1,num2);
     }
-    if(operator="*") {
+    if(operator=="*") {
         return multiply(num1,num2);
     }
-    if(operator="/") {
+    if(operator=="/") {
         return divide(num1,num2);
     }
     //Im not putting percent and squareroot here, as they
     //change only one and currently given number
 }
+
+//Single operations (like sqrt or just equal)
+function singleOperation(operator) {
+    if(operator=="%") {
+        return percent(currentNumber);
+    }
+    if(operator=="sqrt") {
+        return Math.sqrt(currentNumber);
+    }
+    if(operator=="+/-") {
+
+    }
+    if(operator=="=") {
+        secondNumber = parseFloat(currentNumber);
+        return operate(firstNumber, globalOperator, secondNumber);
+    }
+}
+
 
 //Populates the display with given numbers
 function populate(num) {
@@ -54,14 +68,25 @@ function populate(num) {
     currentNumber = display.textContent;
 }
 
+//Clears display
+function clearDisplay() {
+    display.textContent = "0";
+    floatButton.disabled = false;
+}
+
 //Query selectors
 const display = document.querySelector('.display');
 const numberButtons = document.querySelectorAll('.number');
 const clearButton = document.querySelector('#AC');
 const floatButton = document.querySelector('#float');
-
+const operationButtons = document.querySelectorAll('.operation');
+const singleOperationButtons = document.querySelectorAll('.singleOperation');
 //Global variables
 let currentNumber = 0;
+let globalOperator;
+
+let firstNumber;
+let secondNumber;
 
 //Displaying numbers when clicker
 numberButtons.forEach((button) => {
@@ -72,6 +97,25 @@ numberButtons.forEach((button) => {
 
 //Clear button
 clearButton.addEventListener('click', () => {
-    display.textContent = "0";
-    floatButton.disabled = false;
+    clearDisplay();
+    firstNumber = 0;
+    secondNumber = 0;
+    currentNumber = 0;
+});
+
+//Operation buttons listener
+operationButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        currentNumber = display.textContent;
+        globalOperator = button.id;
+        firstNumber = parseFloat(currentNumber);
+        clearDisplay();
+    });
+});
+
+//Single operations buttons listener
+singleOperationButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        display.textContent = singleOperation(button.id);
+    });
 });
