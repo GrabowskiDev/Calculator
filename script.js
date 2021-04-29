@@ -51,6 +51,7 @@ function singleOperation(operator) {
     }
     if(operator=="=") {
         secondNumber = parseFloat(currentNumber);
+        operationsNumber = 0;
         return operate(firstNumber, globalOperator, secondNumber);
     }
 }
@@ -62,7 +63,7 @@ function populate(num) {
     //If current number is 0, it will replace it
     if(text=="0"&&num!=".") text="";
     if(text=="-0"&&num!=".") text="-";
-    display.textContent = `${text}${num}`;
+    display.textContent = `${text}${num}`        ;
 
     //Disabling "," button
     if(num==".") floatButton.disabled = true;
@@ -94,13 +95,19 @@ const singleOperationButtons = document.querySelectorAll('.singleOperation');
 //Global variables
 let currentNumber = 0;
 let globalOperator;
+let operationsNumber = 0;
 
 let firstNumber;
 let secondNumber;
+let result = false;
 
 //Displaying numbers when clicker
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        if(result) {
+            clearDisplay();
+            result = false;
+        }
         populate(button.textContent);
     });
 });
@@ -112,20 +119,30 @@ clearButton.addEventListener('click', () => {
     secondNumber = 0;
     currentNumber = 0;
     globalOperator = "+";
+    operationsNumber = 0;
+    result = false;
 });
 
-//if an operation is already in process, clicking next operation will
-//display the result of previous operation, but input of any number
-//will clear the display and populate display with that number
+
 
 operationButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        //We need to store displayed number after clicking simple operation,
-        firstNumber = currentNumber;
-        //and clear display for another number
-        clearDisplay();
+        //if an operation is already in process, clicking next operation will
+        //display the result of previous operation, but input of any number
+        //will clear the display and populate display with that number
+        if(operationsNumber>0) {
+            display.textContent = singleOperation("=");
+            result = true;
+            setCurrentNumber();
+        } else {
+            //clear display for another number
+            clearDisplay();
+        }
         //We also need to set global operator
         globalOperator = button.id;
+        //We need to store displayed number after clicking simple operation,
+        firstNumber = currentNumber;
+        operationsNumber++;
     });
 });
 
