@@ -65,7 +65,7 @@ function populate(num) {
     //Disabling "," button
     if(num==",") floatButton.disabled = true;
     //Storing currently displayed number
-    currentNumber = display.textContent;
+    setCurrentNumber();
 }
 
 //Clears display
@@ -74,13 +74,21 @@ function clearDisplay() {
     floatButton.disabled = false;
 }
 
+//Sets current number as displayed number
+function setCurrentNumber() {
+    currentNumber = parseFloat(display.textContent);
+}
+
 //Query selectors
 const display = document.querySelector('.display');
+
 const numberButtons = document.querySelectorAll('.number');
 const clearButton = document.querySelector('#AC');
 const floatButton = document.querySelector('#float');
+
 const operationButtons = document.querySelectorAll('.operation');
 const singleOperationButtons = document.querySelectorAll('.singleOperation');
+
 //Global variables
 let currentNumber = 0;
 let globalOperator;
@@ -103,19 +111,30 @@ clearButton.addEventListener('click', () => {
     currentNumber = 0;
 });
 
-//Operation buttons listener
+
+
+//if an operation is already in process, clicking next operation will
+//display the result of previous operation, but input of any number
+//will clear the display and populate display with that number
+
 operationButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        currentNumber = display.textContent;
-        globalOperator = button.id;
-        firstNumber = parseFloat(currentNumber);
+        //We need to store displayed number after clicking simple operation,
+        firstNumber = currentNumber;
+        //and clear display for another number
         clearDisplay();
+        //We also need to set global operator
+        globalOperator = button.id;
     });
 });
 
-//Single operations buttons listener
+//After clicking single operation, we need to determine which operation to use
+//then, we need to display return of that operation, and setCurrentNumber
 singleOperationButtons.forEach((button) => {
     button.addEventListener('click', () => {
         display.textContent = singleOperation(button.id);
+        setCurrentNumber();
+        
+        
     });
 });
