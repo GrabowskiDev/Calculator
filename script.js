@@ -60,7 +60,7 @@ function singleOperation(operator) {
 //Populates the display with given numbers
 function populate(num) {
     let text = display.textContent;
-    if (text.length>=14) return;
+    if (text.length>=13) return;
     //If current number is 0, it will replace it
     if(text=="0"&&num!=".") text="";
     if(text=="-0"&&num!=".") text="-";
@@ -81,6 +81,13 @@ function clearDisplay() {
 //Sets current number as displayed number
 function setCurrentNumber() {
     currentNumber = parseFloat(display.textContent);
+}
+
+//Button press on keyboard press function
+function keyboard(e) {
+    const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
+    key.click();
+    console.log(e.keyCode);
 }
 
 //Query selectors
@@ -171,3 +178,6 @@ backspaceButton.addEventListener('click', () => {
     display.textContent = text;
     setCurrentNumber();
 });
+
+//Listening for key inputs
+window.addEventListener('keydown', keyboard);
