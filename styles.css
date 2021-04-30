@@ -1,12 +1,18 @@
+body {
+    background-color: darkcyan;
+}
+
 .calculator {
     position: absolute;
     left: 50%;
     top: 45%;
     transform: translate(-50%, -55%); 
+    background-color: #0d3754;
 
-    width: 400px;
-    height: 500px;
+    width: 404px;
+    height: 504px;
     border: 5px solid #15232d;
+    border-radius: 10px;
 }
 
 .display {
@@ -27,6 +33,7 @@
     grid-template-rows: repeat(5, 85.6px [row-start]);
     grid-gap: 2px;
     background-color: #0d3754;
+    margin: 2px;
 }
 
 .operation {
@@ -47,6 +54,7 @@
     color: white;
     font-size: 20px;
     border: 0px;
+    border-radius: 22px;
 }
 
 #AC {
