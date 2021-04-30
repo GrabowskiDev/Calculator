@@ -43,7 +43,7 @@ function singleOperation(operator) {
         return percent(currentNumber);
     }
     if(operator=="sqrt") {
-        return Math.sqrt(currentNumber);
+        return Number((Math.sqrt(currentNumber)).toFixed(fixedNumber));
     }
     if(operator=="+/-") {
         if(display.textContent.charAt(0)=="-") return display.textContent.slice(1);
@@ -52,7 +52,7 @@ function singleOperation(operator) {
     if(operator=="=") {
         secondNumber = parseFloat(currentNumber);
         operationsNumber = 0;
-        return operate(firstNumber, globalOperator, secondNumber);
+        return Number((operate(firstNumber, globalOperator, secondNumber)).toFixed(fixedNumber));
     }
 }
 
@@ -100,6 +100,7 @@ let operationsNumber = 0;
 let firstNumber;
 let secondNumber;
 let result = false;
+let fixedNumber = 4;
 
 //Displaying numbers when clicker
 numberButtons.forEach((button) => {
