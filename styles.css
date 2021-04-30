@@ -15,16 +15,48 @@ body {
     border-radius: 10px;
 }
 
+.displayFlex {
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 5px solid #15232d;
+}
+
 .display {
     color: white;
     background-color: #193549;
-    border-bottom: 5px solid #15232d;
+    border-radius: 10px;
 
+    width: 100%;
     margin: auto;
 
     text-align: end;
     font-size: 50px;
     font-family: 'Roboto', sans-serif;
+}
+
+#backspace {
+    width: 50px;
+    scale: 90%;
+    background-color: #122738;
+    text-align: center;
+    line-height: 100%; 
+    color: white;
+    font-size: 20px;
+    border: 0px;
+    border-radius: 22px;
+}
+
+#backspace:hover {
+    border: 3px solid red;
+}
+
+#backspace:active {
+    scale: 80%;
+}
+
+.separator {
+    width: 5px;
+    background-color: #15232d;
 }
 
 .buttons {
