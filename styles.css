@@ -50,7 +50,7 @@ body {
 
 .buttons * {
     text-align: center;
-    line-height: 87.2px;
+    line-height: 100%; 
     color: white;
     font-size: 20px;
     border: 0px;
@@ -59,4 +59,12 @@ body {
 
 #AC {
     background-color: #ffae42;
+}
+
+.buttons *:hover {
+    border: 3px solid red;
+}
+
+.buttons *:active {
+    scale: 90%;
 }
