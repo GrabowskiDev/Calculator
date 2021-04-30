@@ -83,6 +83,13 @@ function setCurrentNumber() {
     currentNumber = parseFloat(display.textContent);
 }
 
+//Button press on keyboard press function
+function keyboard(e) {
+    const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
+    key.click();
+    console.log(e.keyCode);
+}
+
 //Query selectors
 const display = document.querySelector('.display');
 
@@ -171,3 +178,6 @@ backspaceButton.addEventListener('click', () => {
     display.textContent = text;
     setCurrentNumber();
 });
+
+//Listening for key inputs
+window.addEventListener('keydown', keyboard);
