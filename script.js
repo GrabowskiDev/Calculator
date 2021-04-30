@@ -89,6 +89,7 @@ const display = document.querySelector('.display');
 const numberButtons = document.querySelectorAll('.number');
 const clearButton = document.querySelector('#AC');
 const floatButton = document.querySelector('#float');
+const backspaceButton = document.querySelector('#backspace');
 
 const operationButtons = document.querySelectorAll('.operation');
 const singleOperationButtons = document.querySelectorAll('.singleOperation');
@@ -156,4 +157,17 @@ singleOperationButtons.forEach((button) => {
         firstNumber = 0;
         setCurrentNumber();
     });
+});
+
+//Backspace button removing last number
+backspaceButton.addEventListener('click', () => {
+    let text = display.textContent;
+    //If number is -0, just don't do anything
+    if(text=="-0") return;
+    else if(text.length==2 && text.charAt(0)=="-") text="-0";
+    //If number is 1 digit, just replace it with 0
+    else if(text.length==1) text=0;
+    else text = text.slice(0, text.length-1);
+    display.textContent = text;
+    setCurrentNumber();
 });
