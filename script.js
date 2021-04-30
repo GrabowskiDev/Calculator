@@ -60,6 +60,7 @@ function singleOperation(operator) {
 //Populates the display with given numbers
 function populate(num) {
     let text = display.textContent;
+    if (text.length>=14) return;
     //If current number is 0, it will replace it
     if(text=="0"&&num!=".") text="";
     if(text=="-0"&&num!=".") text="-";
@@ -125,7 +126,7 @@ clearButton.addEventListener('click', () => {
 });
 
 
-
+//Populating display listener
 operationButtons.forEach((button) => {
     button.addEventListener('click', () => {
         //if an operation is already in process, clicking next operation will
@@ -152,6 +153,7 @@ operationButtons.forEach((button) => {
 singleOperationButtons.forEach((button) => {
     button.addEventListener('click', () => {
         display.textContent = singleOperation(button.id);
+        firstNumber = 0;
         setCurrentNumber();
     });
 });
