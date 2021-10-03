@@ -1,102 +1,117 @@
 body {
-    background-color: darkcyan;
+	background-color: darkcyan;
 }
 
 .calculator {
-    position: absolute;
-    left: 50%;
-    top: 45%;
-    transform: translate(-50%, -55%); 
-    background-color: #0d3754;
+	position: absolute;
+	left: 50%;
+	top: 45%;
+	transform: translate(-50%, -55%);
+	background-color: #0d3754;
 
-    width: 404px;
-    height: 504px;
-    border: 5px solid #15232d;
-    border-radius: 10px;
+	width: 404px;
+	height: 504px;
+	border: 5px solid #15232d;
+	border-radius: 10px;
 }
 
 .displayFlex {
-    display: flex;
-    justify-content: flex-end;
-    border-bottom: 5px solid #15232d;
+	display: flex;
+	justify-content: flex-end;
+	border-bottom: 5px solid #15232d;
 }
 
 .display {
-    color: white;
-    background-color: #193549;
-    border-radius: 10px;
+	color: white;
+	background-color: #193549;
+	border-radius: 10px;
 
-    width: 100%;
-    margin: auto;
+	width: 100%;
+	margin: auto;
 
-    text-align: end;
-    font-size: 50px;
-    font-family: 'Roboto', sans-serif;
+	text-align: end;
+	font-size: 50px;
+	font-family: 'Roboto', sans-serif;
 }
 
 #backspace {
-    width: 50px;
-    scale: 90%;
-    background-color: #122738;
-    text-align: center;
-    line-height: 100%; 
-    color: white;
-    font-size: 20px;
-    border: 0px;
-    border-radius: 22px;
+	width: 50px;
+	scale: 90%;
+	background-color: #122738;
+	text-align: center;
+	line-height: 100%;
+	color: white;
+	font-size: 20px;
+	border: 0px;
+	border-radius: 22px;
 }
 
 #backspace:hover {
-    border: 3px solid red;
+	border: 3px solid red;
 }
 
 #backspace:active {
-    scale: 80%;
+	scale: 80%;
 }
 
 .separator {
-    width: 5px;
-    background-color: #15232d;
+	width: 5px;
+	background-color: #15232d;
 }
 
 .buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 98.5px [col-start]);
-    grid-template-rows: repeat(5, 85.6px [row-start]);
-    grid-gap: 2px;
-    background-color: #0d3754;
-    margin: 2px;
+	display: grid;
+	grid-template-columns: repeat(4, 98.5px [col-start]);
+	grid-template-rows: repeat(5, 85.6px [row-start]);
+	grid-gap: 2px;
+	background-color: #0d3754;
+	margin: 2px;
 }
 
 .operation {
-    background-color: #15232d;
+	background-color: #15232d;
 }
 
 .singleOperation {
-    background-color: #15232d;
+	background-color: #15232d;
 }
 
 .number {
-    background-color: #122738;
+	background-color: #122738;
 }
 
 .buttons * {
-    text-align: center;
-    line-height: 100%; 
-    color: white;
-    font-size: 20px;
-    border: 0px;
-    border-radius: 22px;
+	text-align: center;
+	line-height: 100%;
+	color: white;
+	font-size: 20px;
+	border: 0px;
+	border-radius: 22px;
 }
 
 #AC {
-    background-color: #ffae42;
+	background-color: #ffae42;
 }
 
 .buttons *:hover {
-    border: 3px solid red;
+	border: 3px solid red;
 }
 
 .buttons *:active {
-    scale: 90%;
+	scale: 90%;
+}
+
+@media screen and (max-width: 500px) {
+	.calculator {
+		width: 323.2px;
+		height: 416.2px;
+	}
+
+	.buttons {
+		display: grid;
+		grid-template-columns: repeat(4, 78.8px [col-start]);
+		grid-template-rows: repeat(5, 68.48px [row-start]);
+		grid-gap: 1.6px;
+		margin: 1.6px;
+	}
 }
