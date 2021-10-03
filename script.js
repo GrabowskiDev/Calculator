@@ -1,93 +1,96 @@
 //Math functions
-function add(num1,num2) {
-    return num1+num2;
+function add(num1, num2) {
+	return num1 + num2;
 }
 
-function substract(num1,num2) {
-    return num1-num2;
+function substract(num1, num2) {
+	return num1 - num2;
 }
 
-function multiply(num1,num2) {
-    return num1*num2;
+function multiply(num1, num2) {
+	return num1 * num2;
 }
 
-function divide(num1,num2) {
-    return num1/num2;
+function divide(num1, num2) {
+	return num1 / num2;
 }
 
 function percent(num) {
-    return num/100;
+	return num / 100;
 }
 
 //Make an operation on given numbers
-function operate(num1,operator,num2) {
-    if(operator=="+") {
-        return add(num1,num2);
-    }
-    if(operator=="-") {
-        return substract(num1,num2);
-    }
-    if(operator=="*") {
-        return multiply(num1,num2);
-    }
-    if(operator=="/") {
-        return divide(num1,num2);
-    }
-    //Im not putting percent and squareroot here, as they
-    //change only one and currently given number
+function operate(num1, operator, num2) {
+	if (operator == '+') {
+		return add(num1, num2);
+	}
+	if (operator == '-') {
+		return substract(num1, num2);
+	}
+	if (operator == '*') {
+		return multiply(num1, num2);
+	}
+	if (operator == '/') {
+		return divide(num1, num2);
+	}
+	//Im not putting percent and squareroot here, as they
+	//change only one and currently given number
 }
 
 //Single operations (like sqrt or just equal)
 function singleOperation(operator) {
-    if(operator=="%") {
-        return percent(currentNumber);
-    }
-    if(operator=="sqrt") {
-        return Number((Math.sqrt(currentNumber)).toFixed(fixedNumber));
-    }
-    if(operator=="+/-") {
-        if(display.textContent.charAt(0)=="-") return display.textContent.slice(1);
-        else return `-${display.textContent}`;
-    }
-    if(operator=="=") {
-        secondNumber = parseFloat(currentNumber);
-        operationsNumber = 0;
-        return Number((operate(firstNumber, globalOperator, secondNumber)).toFixed(fixedNumber));
-    }
+	if (operator == '%') {
+		return percent(currentNumber);
+	}
+	if (operator == 'sqrt') {
+		return Number(Math.sqrt(currentNumber).toFixed(fixedNumber));
+	}
+	if (operator == '+/-') {
+		if (display.textContent.charAt(0) == '-')
+			return display.textContent.slice(1);
+		else return `-${display.textContent}`;
+	}
+	if (operator == '=') {
+		secondNumber = parseFloat(currentNumber);
+		operationsNumber = 0;
+		return Number(
+			operate(firstNumber, globalOperator, secondNumber).toFixed(
+				fixedNumber
+			)
+		);
+	}
 }
-
 
 //Populates the display with given numbers
 function populate(num) {
-    let text = display.textContent;
-    if (text.length>=13) return;
-    //If current number is 0, it will replace it
-    if(text=="0"&&num!=".") text="";
-    if(text=="-0"&&num!=".") text="-";
-    display.textContent = `${text}${num}`        ;
+	let text = display.textContent;
+	if (text.length >= 13) return;
+	//If current number is 0, it will replace it
+	if (text == '0' && num != '.') text = '';
+	if (text == '-0' && num != '.') text = '-';
+	display.textContent = `${text}${num}`;
 
-    //Disabling "," button
-    if(num==".") floatButton.disabled = true;
-    //Storing currently displayed number
-    setCurrentNumber();
+	//Disabling "," button
+	if (num == '.') floatButton.disabled = true;
+	//Storing currently displayed number
+	setCurrentNumber();
 }
 
 //Clears display
 function clearDisplay() {
-    display.textContent = "0";
-    floatButton.disabled = false;
+	display.textContent = '0';
+	floatButton.disabled = false;
 }
 
 //Sets current number as displayed number
 function setCurrentNumber() {
-    currentNumber = parseFloat(display.textContent);
+	currentNumber = parseFloat(display.textContent);
 }
 
 //Button press on keyboard press function
 function keyboard(e) {
-    const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
-    key.click();
-    console.log(e.keyCode);
+	const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
+	key.click();
 }
 
 //Query selectors
@@ -112,71 +115,70 @@ let result = false;
 let fixedNumber = 4;
 
 //Displaying numbers when clicker
-numberButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        if(result) {
-            clearDisplay();
-            result = false;
-        }
-        populate(button.textContent);
-    });
+numberButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		if (result) {
+			clearDisplay();
+			result = false;
+		}
+		populate(button.textContent);
+	});
 });
 
 //Clear button
 clearButton.addEventListener('click', () => {
-    clearDisplay();
-    firstNumber = 0;
-    secondNumber = 0;
-    currentNumber = 0;
-    globalOperator = "+";
-    operationsNumber = 0;
-    result = false;
+	clearDisplay();
+	firstNumber = 0;
+	secondNumber = 0;
+	currentNumber = 0;
+	globalOperator = '+';
+	operationsNumber = 0;
+	result = false;
 });
 
-
 //Populating display listener
-operationButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        //if an operation is already in process, clicking next operation will
-        //display the result of previous operation, but input of any number
-        //will clear the display and populate display with that number
-        if(operationsNumber>0) {
-            display.textContent = singleOperation("=");
-            result = true;
-            setCurrentNumber();
-        } else {
-            //clear display for another number
-            clearDisplay();
-        }
-        //We also need to set global operator
-        globalOperator = button.id;
-        //We need to store displayed number after clicking simple operation,
-        firstNumber = currentNumber;
-        operationsNumber++;
-    });
+operationButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		//if an operation is already in process, clicking next operation will
+		//display the result of previous operation, but input of any number
+		//will clear the display and populate display with that number
+		if (operationsNumber > 0) {
+			display.textContent = singleOperation('=');
+			result = true;
+			setCurrentNumber();
+		} else {
+			//clear display for another number
+			clearDisplay();
+		}
+		//We also need to set global operator
+		globalOperator = button.id;
+		//We need to store displayed number after clicking simple operation,
+		firstNumber = currentNumber;
+		operationsNumber++;
+	});
 });
 
 //After clicking single operation, we need to determine which operation to use
 //then, we need to display return of that operation, and setCurrentNumber
-singleOperationButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        display.textContent = singleOperation(button.id);
-        firstNumber = 0;
-        setCurrentNumber();
-    });
+singleOperationButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		display.textContent = singleOperation(button.id);
+		firstNumber = 0;
+		setCurrentNumber();
+	});
 });
 
 //Backspace button removing last number
 backspaceButton.addEventListener('click', () => {
-    let text = display.textContent;
-    //If number is -0, just don't do anything
-    if(text=="-0") return;
-    else if(text.length==2 && text.charAt(0)=="-") text="-0";
-    //If number is 1 digit, just replace it with 0
-    else if(text.length==1) text=0;
-    else text = text.slice(0, text.length-1);
-    display.textContent = text;
-    setCurrentNumber();
+	let text = display.textContent;
+	//If number is -0, just don't do anything
+	if (text == '-0') return;
+	else if (text.length == 2 && text.charAt(0) == '-') text = '-0';
+	//If number is 1 digit, just replace it with 0
+	else if (text.length == 1) text = 0;
+	else text = text.slice(0, text.length - 1);
+	display.textContent = text;
+	setCurrentNumber();
 });
 
 //Listening for key inputs
