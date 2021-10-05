@@ -1,16 +1,22 @@
 body {
 	background-color: darkcyan;
+	height: 100vh;
+	margin: 0px;
+}
+
+.center {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .calculator {
-	position: absolute;
-	left: 50%;
-	top: 45%;
-	transform: translate(-50%, -55%);
 	background-color: #0d3754;
 
 	width: 404px;
 	height: 504px;
+	margin-bottom: 5vh;
 	border: 5px solid #15232d;
 	border-radius: 10px;
 }
@@ -103,15 +109,12 @@ body {
 
 @media screen and (max-width: 500px) {
 	.calculator {
-		width: 323.2px;
-		height: 416.2px;
+		scale: 80%;
 	}
+}
 
-	.buttons {
-		display: grid;
-		grid-template-columns: repeat(4, 78.8px [col-start]);
-		grid-template-rows: repeat(5, 68.48px [row-start]);
-		grid-gap: 1.6px;
-		margin: 1.6px;
+@media screen and (max-width: 340px) {
+	.calculator {
+		scale: 70%;
 	}
 }
